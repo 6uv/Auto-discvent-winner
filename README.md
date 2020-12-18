@@ -8,4 +8,4 @@ why not lol
 https://discord.gg/PXBYmnx54c Auto winner for these events
 
 # credits
-fweak oh sexy man
+fweak oh sexy man https://github.com/Fweak
