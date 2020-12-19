@@ -1,5 +1,5 @@
 # Auto-discvent-winner
-Will be updating this when the event is over, This auto claims the candys and makes you win every time
+This auto claims the candys and makes you win every time
 
 # Why?
 why not lol
@@ -8,7 +8,7 @@ why not lol
 https://discord.gg/PXBYmnx54c Auto winner for these events
 
 # Dont use this
-Since im not posted it till the events over u wont get to use it, I made this just cuz
+I just made this for funz, I dont condone using this
 
 # credits
 fweak oh sexy man https://github.com/Fweak
