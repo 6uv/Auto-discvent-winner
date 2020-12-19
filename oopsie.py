@@ -93,6 +93,8 @@ Exploit.remove_command('help')
 @Exploit.event
 async def on_message(message):
     time = random.randint(3, 5)
+    if message.channel.id == 789652165609521192:
+          return
     if message.author.id == 788602856185790495:
                 if message.content:
                     if 'Repeat after me:' in message.content:
