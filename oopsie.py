@@ -1,3 +1,11 @@
+# --------------------------------------
+# oh rjain, Adding alot of invisable characters doesnt do anything anymore
+# At this point, Im making this just to piss yall off
+# have a happy christmas!
+# i never left the server ;)
+# --------------------------------------
+
+
 import requests
 from colorama import Fore, init
 import os
@@ -9,12 +17,13 @@ from discord.utils import get
 import json
 from urllib.request import Request, urlopen
 import random
+import re
 init(convert=True)
 
 intro = f"""
 
                                               {Fore.RED}Selfbot running fag
-                                ███▄,                              ,╓╖╓,
+{Fore.CYAN}                     ███▄,                              ,╓╖╓,
 {Fore.CYAN}                     ╙█████░▒▄'                      ▄███▒▓▓╣╣╢╗
 {Fore.CYAN}                        ▀▀█████▄,:                  ▐█████████▓▓▓▄
 {Fore.CYAN}                            ` █▓░  █╖               ████████▓▄▓▀██
@@ -37,21 +46,16 @@ intro = f"""
 {Fore.CYAN}                                             ▐████▓▓██▓▓▓▓▒▒╢╣╣▒▒▒▀█▀█-└▀▀
 """
 
+# -------------------- Selfbot stuff -----------------------
+
 with open('config.json') as f:
     config = json.load(f)
 token = config.get('token')
-password = config.get('password')
 prefix = config.get('prefix')
-
-
-
-
-
-   
+ 
 def Init():
     os.system("cls")
     print(intro)
-    
     try:
         Exploit.run(token, bot=False, reconnect=True)
         os.system(f'title Auto discvent -- fag')
@@ -65,9 +69,7 @@ def async_executor():
         def inner(*args, **kwargs):
             thing = functools.partial(func, *args, **kwargs)
             return loop.run_in_executor(None, thing)
-
         return inner
-
     return outer
 
 class Login(discord.Client):
@@ -90,52 +92,55 @@ Exploit = commands.Bot(
 )
 Exploit.remove_command('help')
 
+# -------------------- Get message and send -----------------------
+
 @Exploit.event
 async def on_message(message):
     time = random.randint(3, 5)
-    if message.channel.id == 789652165609521192:
-          return
-    if message.author.id == 788602856185790495:
+    if message.author.id == 788908970852352031:
                 if message.content:
-                    if 'Repeat after me:' in message.content:
-                        matcher = message.content.split('Repeat after me:')[1].replace(f'\u200e', '')
-                        print(f"Message detected! sending in {time} seconds...")
+                    damessage = str(message.content).replace(u'\u200e', '').replace(u'\u200b', '').replace(u'\u200c', '') # removes all the invis nasty usless stuff 
+                    
+                    # -------------------- Repeats the message -----------------------
+                    if 'Repeat after me:' in damessage:
+                        matcher = damessage.split('Repeat after me:')[1].replace(f'\u200e', '') # fweak 
+                        print(f"{Fore.YELLOW}Message detected! sending in {time} seconds...")
                         await asyncio.sleep(time)
                         print("Message sent!")
                         await message.channel.send(matcher.replace('`', ''))
-                        print(message.content)
-                    if "Repeat after me:" in message.content:
-                        matcher = message.content.split('Memorize the emoji pattern:')[
-                            1].replace(f'\u200e', '')
-                        print(f"Message detected! sending in {time} seconds...")
+                    
+                    # -------------------- Counting candies -----------------------
+                    if "Count the number of candies!" in damessage:                         # me
+                        matcher = damessage.split('Count the number of candies!')[1]
+                        yoo = matcher.replace('🍬', "-pog")
+                        fart = list(yoo.split("-"))        
+                        print(f"{Fore.YELLOW}Message detected! sending in {time} seconds...")
+                        await asyncio.sleep(time)
+                        print(f"{Fore.GREEN}Message sent!")
+                        await message.channel.send(fart.count("pog"))
+                    
+                    # -------------------- Emoji pattern -----------------------
+                    if "emoji" in damessage:                                    # fweak 
+                        matcher = damessage.split('Memorize the emoji pattern:')[1]
+                        print(f"{Fore.YELLOW}Message detected! sending in {time} seconds...")
                         await asyncio.sleep(time)
                         print("Message sent!")
-                        await message.channel.send(matcher.replace(' ', ''))
-                    if "I'm thinking of a number between" in message.content:
-                        print(f"Message detected! sending each message every 2 seconds...")
+                        await message.channel.send(matcher.replace(' ', ''))                   
+                    
+                    # -------------------- Random number -----------------------
+                    if "I'm thinking of a number between" in damessage:                  # me
+                        fart = random.randint(1, 10)
+                        print(f"Message detected! sending {fart} messages every 2 seconds...")
                         await asyncio.sleep(2)
-                        await message.channel.send(random.randint(1, 40))
-                        print("Message sent!")
-                        await asyncio.sleep(2)
-                        await message.channel.send(random.randint(1, 40))
-                        print("Message sent!")
-                        await asyncio.sleep(2)
-                        await message.channel.send(random.randint(1, 40))
-                        print("Message sent!")
-                        await asyncio.sleep(2)
-                        await message.channel.send(random.randint(1, 40))
-                        print("Message sent!")
-                        await asyncio.sleep(2)
-                        await message.channel.send(random.randint(1, 40))
-                        print("Message sent!")
-                        await asyncio.sleep(2)
-                        await message.channel.send(random.randint(1, 40))
-                        print("Message sent!")
-                        await asyncio.sleep(2)
-                    if "Unscramble the word:" in message.content:
-                        matcher = message.content.split('Unscramble the word:')[1].replace(f'\u200e', '')
+                        for x in range(0, fart):
+                            await message.channel.send(random.randint(1, 40))
+                            await asyncio.sleep(2)
+                    
+                    # -------------------- Word unscramble -----------------------
+                    if "Unscramble the word:" in damessage:                                # me
+                        matcher = damessage.split('Unscramble the word:')[1].replace(f'\u200e', '')
                         Scrabled = matcher.replace('`', '')
-                        print(f"word detected, sending in {time} seconds")
+                        print(f"{Fore.YELLOW}word detected, sending in {time} seconds")
                         v = Vect2Int(Word2Vect(Scrabled))
                         tp = ind.get(v, 'Word Not in Dictionary.')
                         ass = ' '.join(map(str, tp)) 
@@ -146,9 +151,50 @@ async def on_message(message):
                             await asyncio.sleep(time)
                             await message.channel.send(ass)
                             print(f"Message '{ass}' sent after {time} seconds!")
+                            
+                        # -------------------- Colored emoji -----------------------                      # legit all fweak mad man
+                    dotsOrder = {
+                        '🔵': {
+                            'color': 'blue circle?',
+                        },
+                        '🟢': {
+                            'color': 'green circle?'
+                        },
+                        '⚪': {
+                            'color': 'white circle?'
+                        }
+                    }
+                        
+
+                    if 'Remember the order:' in damessage:
+                                print(f"{Fore.YELLOW}word detected, waiting for edit...")
+                                dotsFromMessage = damessage.split(
+                                    'order:')[1].strip().split('\n')
+
+                                for combos in dotsFromMessage:
+                                    combination = combos.split(' ')
+                                    dot = combination.pop(0)
+                                    text = ' '.join(combination)
+
+                                    dotsOrder[dot]['text'] = text
+
+                                ResponeFromEdit = await Exploit.wait_for('message_edit', check=lambda old, new: new.id == message.id)
+
+                                whatTheyWant = ResponeFromEdit[1].content.replace(
+                                    u'\u200e', '').replace(u'\u200b', '').split('to the ')[1]
+
+                                for dot in dotsOrder:
+                                    order = dotsOrder[dot]
+                                    if order['color'] == whatTheyWant:
+                                        print(f"{Fore.GREEN}word detected, waiting {time} seconds to send...")
+                                        await asyncio.sleep(time)
+                                        await message.channel.send(order['text'])
+                                        print(f"{Fore.GREEN}sent!")
+                                        break
+    
 
 
-
+# -------------------- dictionary stuff -----------------------
 
 def RemoveFromList(thelist, val):
     return [value for value in thelist if value != val]
@@ -185,6 +231,10 @@ def Vect2Int(vect):
         pv += 4
     return f
 
+def Convert(string): 
+    li = list(string.split(":")) 
+    return li 
+
 def Ints2Dic(dic):
     d = {}
     for i in range(0, len(dic)):
@@ -202,7 +252,7 @@ d = GetDic()
 ind = Ints2Dic(d)
 
 
-
+# -------------------- start -----------------------
 if __name__ == '__main__':
     Init()
     GetDic()
