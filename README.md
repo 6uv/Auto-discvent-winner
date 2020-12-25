@@ -1,3 +1,6 @@
+# UPDATED!
+now works agian, They just spam invis characters to "patch it" kekw
+
 # Auto-discvent-winner
 This auto claims the candys and makes you win every time
 
